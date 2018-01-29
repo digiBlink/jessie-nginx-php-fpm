@@ -29,9 +29,9 @@ RUN apt-get update && apt-get install -y \
 		xz-utils \
 	--no-install-recommends && rm -r /var/lib/apt/lists/*
 
-# ensure www-data user exists
 RUN set -x \
-	&& adduser -u 82 -D -S -G www-data www-data
+	&& adduser --system --home /DATA --shell /bin/bash --group nginx \
+	&& usermod -G www-data nginx
 
 ENV PHP_INI_DIR /usr/local/etc/php
 RUN mkdir -p $PHP_INI_DIR/conf.d
@@ -252,8 +252,8 @@ ADD files/php.ini /usr/local/etc/php/
 ADD files/run.sh /
 RUN chmod +x /run.sh
 
-RUN sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/DATA:\/bin\/bash/g" /etc/passwd && \
-    sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/DATA:\/bin\/bash/g" /etc/passwd-
+#RUN sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/DATA:\/bin\/bash/g" /etc/passwd && \
+#    sed -i "s/nginx:x:100:101:nginx:\/var\/lib\/nginx:\/sbin\/nologin/nginx:x:100:101:nginx:\/DATA:\/bin\/bash/g" /etc/passwd-
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/bin/wp-cli && chown nginx:nginx /usr/bin/wp-cli
 
