@@ -145,6 +145,7 @@ RUN set -eux; \
 		--with-zlib \
 		--with-mysqli \
 		--with-pdo-mysql \
+		--with-gd \
 		--with-png-dir \
 		--with-jpeg-dir \
 		--with-opcache \
