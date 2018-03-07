@@ -6,7 +6,7 @@ Container with:
 
 * Debian Jessie (default time zone `Europe/Riga`)
 * `nginx` 1.10.3
-* PHP-FPM 7.0.27 (all necessary extensions to be ready for Wordpress deployment)
+* PHP-FPM 7.0.28 (all necessary extensions to be ready for Wordpress deployment)
 * WP-CLI 1.5.0
 * `git`
 
