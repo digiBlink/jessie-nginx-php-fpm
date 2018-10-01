@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t digiblink/jessie-nginx-php-fpm .
+docker build --no-cache -t digiblink/jessie-nginx-php-fpm .
